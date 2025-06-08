@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CodeBot Academy - Learn Python for Kids</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <span class="robot-icon">🤖</span>
+                    <h1>CodeBot Academy</h1>
+                </div>
+                <nav class="nav">
+                    <button class="nav-btn active" data-section="home">Home</button>
+                    <button class="nav-btn" data-section="learn">Learn</button>
+                    <button class="nav-btn" data-section="playground">Code Playground</button>
+                    <button class="nav-btn" data-section="projects">Projects</button>
+                    <button class="nav-btn" data-section="progress">Progress</button>
+                    <button class="nav-btn" data-section="chat">AI Chat</button>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main class="main">
+        <!-- Home Section -->
+        <section id="home" class="section active">
+            <div class="container">
+                <div class="hero">
+                    <div class="hero-content">
+                        <div class="robot-mascot">🤖</div>
+                        <h2>Welcome to CodeBot Academy!</h2>
+                        <p>Learn Python programming with fun projects and your AI robot assistant. Perfect for kids aged 8-14!</p>
+                        <button class="btn btn--primary btn--lg" onclick="showSection('projects')">Start Coding Adventures</button>
+                    </div>
+                    <div class="features">
+                        <div class="feature-card">
+                            <span class="feature-icon">🎯</span>
+                            <h3>10 Fun Projects</h3>
+                            <p>From beginner to advanced coding challenges</p>
+                        </div>
+                        <div class="feature-card">
+                            <span class="feature-icon">🤖</span>
+                            <h3>AI Assistant</h3>
+                            <p>Get help anytime with our friendly robot</p>
+                        </div>
+                        <div class="feature-card">
+                            <span class="feature-icon">🏆</span>
+                            <h3>Achievements</h3>
+                            <p>Earn badges as you learn and grow</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Learn Section -->
+        <section id="learn" class="section">
+            <div class="container">
+                <h2>Learning Path</h2>
+                <div class="lessons-grid">
+                    <div class="lesson-card">
+                        <h3>Python Basics</h3>
+                        <p>Variables, print statements, and basic syntax</p>
+                        <div class="lesson-progress">
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 80%"></div>
+                            </div>
+                            <span>80% Complete</span>
+                        </div>
+                    </div>
+                    <div class="lesson-card">
+                        <h3>Making Decisions</h3>
+                        <p>If statements and conditional logic</p>
+                        <div class="lesson-progress">
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 60%"></div>
+                            </div>
+                            <span>60% Complete</span>
+                        </div>
+                    </div>
+                    <div class="lesson-card">
+                        <h3>Repeating Actions</h3>
+                        <p>For loops and while loops</p>
+                        <div class="lesson-progress">
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 40%"></div>
+                            </div>
+                            <span>40% Complete</span>
+                        </div>
+                    </div>
+                    <div class="lesson-card">
+                        <h3>Storing Data</h3>
+                        <p>Lists, dictionaries, and data structures</p>
+                        <div class="lesson-progress">
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 20%"></div>
+                            </div>
+                            <span>20% Complete</span>
+                        </div>
+                    </div>
+                    <div class="lesson-card">
+                        <h3>Creating Functions</h3>
+                        <p>Writing reusable code with functions</p>
+                        <div class="lesson-progress">
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 0%"></div>
+                            </div>
+                            <span>Not Started</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Code Playground Section -->
+        <section id="playground" class="section">
+            <div class="container">
+                <h2>Code Playground</h2>
+                <div class="playground-container">
+                    <div class="code-editor">
+                        <h3>Code Editor</h3>
+                        <textarea class="code-textarea" placeholder="# Write your Python code here!
+print('Hello, CodeBot Academy!')
+
+# Try creating your own variables
+name = 'Young Coder'
+age = 10
+print(f'Hi {name}, you are {age} years old!')"></textarea>
+                        <button class="btn btn--primary run-code-btn">Run Code 🚀</button>
+                    </div>
+                    <div class="code-output">
+                        <h3>Output</h3>
+                        <div class="output-area">
+                            <p>Click "Run Code" to see your results here!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="section">
+            <div class="container">
+                <h2>Coding Projects</h2>
+                <div class="projects-filter">
+                    <button class="filter-btn active" data-level="all">All Projects</button>
+                    <button class="filter-btn" data-level="Beginner">Beginner</button>
+                    <button class="filter-btn" data-level="Intermediate">Intermediate</button>
+                    <button class="filter-btn" data-level="Advanced">Advanced</button>
+                </div>
+                <div class="projects-grid" id="projects-grid">
+                    <!-- Projects will be dynamically loaded here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Progress Section -->
+        <section id="progress" class="section">
+            <div class="container">
+                <h2>Your Progress</h2>
+                <div class="progress-stats">
+                    <div class="stat-card">
+                        <span class="stat-number">3</span>
+                        <span class="stat-label">Projects Completed</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number">2</span>
+                        <span class="stat-label">Badges Earned</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number">15</span>
+                        <span class="stat-label">Hours Coded</span>
+                    </div>
+                </div>
+                <div class="achievements">
+                    <h3>Achievements</h3>
+                    <div class="badges-grid">
+                        <div class="badge earned">
+                            <span class="badge-icon">🎯</span>
+                            <div class="badge-info">
+                                <h4>First Steps</h4>
+                                <p>Complete your first project</p>
+                            </div>
+                        </div>
+                        <div class="badge earned">
+                            <span class="badge-icon">🔧</span>
+                            <div class="badge-info">
+                                <h4>Problem Solver</h4>
+                                <p>Debug your first error</p>
+                            </div>
+                        </div>
+                        <div class="badge">
+                            <span class="badge-icon">✨</span>
+                            <div class="badge-info">
+                                <h4>Creative Coder</h4>
+                                <p>Customize a project</p>
+                            </div>
+                        </div>
+                        <div class="badge">
+                            <span class="badge-icon">🤖</span>
+                            <div class="badge-info">
+                                <h4>Helper Hero</h4>
+                                <p>Ask the AI assistant 5 questions</p>
+                            </div>
+                        </div>
+                        <div class="badge">
+                            <span class="badge-icon">👑</span>
+                            <div class="badge-info">
+                                <h4>Code Master</h4>
+                                <p>Complete all beginner projects</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- AI Chat Section -->
+        <section id="chat" class="section">
+            <div class="container">
+                <h2>AI Chat Assistant 🤖</h2>
+                <div class="chat-container">
+                    <div class="chat-messages" id="chat-messages">
+                        <div class="message bot-message">
+                            <span class="message-icon">🤖</span>
+                            <div class="message-content">
+                                <p>Hi there! I'm CodeBot, your friendly AI assistant. I'm here to help you learn Python programming. You can ask me questions about coding, get help with projects, or just chat about programming!</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="chat-suggestions">
+                        <h3>Try asking me:</h3>
+                        <div class="suggestion-buttons">
+                            <button class="suggestion-btn" onclick="sendSuggestion('How do I use variables in Python?')">How do I use variables?</button>
+                            <button class="suggestion-btn" onclick="sendSuggestion('What is a for loop?')">What is a for loop?</button>
+                            <button class="suggestion-btn" onclick="sendSuggestion('Help me debug my code')">Help me debug my code</button>
+                            <button class="suggestion-btn" onclick="sendSuggestion('Show me a fun coding project')">Show me a fun project</button>
+                        </div>
+                    </div>
+                    <div class="chat-input">
+                        <input type="text" class="form-control" id="chat-input" placeholder="Type your question here...">
+                        <button class="btn btn--primary" onclick="sendMessage()">Send</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Project Detail Modal -->
+    <div class="modal" id="project-modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <div class="modal-body" id="modal-body">
+                <!-- Project details will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
