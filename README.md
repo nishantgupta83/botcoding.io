@@ -1,3 +1,30 @@
+#V5.0
+
+
+botcoding/
+├── index.html                # Homepage with navigation
+├── learn/
+│   ├── index.html            # Main learn page with links to modules
+│   ├── basics.html           # Variables, numbers, strings
+│   ├── conditions.html       # If/else, logical operators
+│   ├── loops.html            # For/while loops
+│   ├── functions.html        # Function creation
+│   └── data-structures.html  # Lists, dictionaries
+├── projects/
+│   ├── index.html            # Projects overview
+│   ├── beginner/
+│   │   ├── password-generator.html
+│   │   ├── guess-the-number.html
+│   │   └── ... (more projects)
+│   └── advanced/
+│       ├── budget-tracker.html
+│       └── ... (more projects)
+├── styles/
+│   └── main.css              # Styling
+└── scripts/
+    └── progress.js           # Progress tracking
+
+#V1.0
 # Publishing Your CodeBot Academy Website - Minimal Cost Options
 
 ## Free Hosting Platforms (Recommended)
