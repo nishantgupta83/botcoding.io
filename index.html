@@ -3,124 +3,150 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CodeBot Academy - Learn Python for Kids</title>
+    <title>BotCoding.io - Python Learning for Kids</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <nav class="navbar">
-        <div class="container flex items-center justify-between">
-            <div class="flex items-center gap-8">
-                <div class="logo">
-                    🤖 <span>CodeBot Academy</span>
-                </div>
-                <div class="nav-links">
-                    <button class="nav-btn" data-tab="home">Home</button>
-                    <button class="nav-btn" data-tab="learn">Learn</button>
-                    <button class="nav-btn" data-tab="projects">Projects</button>
-                </div>
+    <header class="header">
+        <nav class="nav container">
+            <div class="nav__brand">
+                <h1>🐍 BotCoding.io</h1>
+                <span class="nav__tagline">Python Learning for Kids</span>
             </div>
-            <div class="progress-indicator">
-                <span id="overall-progress">Overall Progress: 40%</span>
+            <div class="nav__links">
+                <button class="nav__link active" data-tab="home">Home</button>
+                <button class="nav__link" data-tab="learn">Learn</button>
+                <button class="nav__link" data-tab="projects">Projects</button>
+                <button class="nav__link" data-tab="progress">Progress</button>
             </div>
-        </div>
-    </nav>
+        </nav>
+    </header>
 
-    <main class="container">
+    <main class="main container">
         <!-- Home Tab -->
-        <section id="home-tab" class="tab-content active">
-            <div class="hero-section">
-                <div class="hero-content">
-                    <h1>Welcome to CodeBot Academy! 🚀</h1>
-                    <p>Learn Python programming with fun projects and interactive lessons designed just for kids!</p>
-                    <div class="hero-buttons">
-                        <button class="btn btn--primary btn--lg" data-tab="learn">Start Learning</button>
-                        <button class="btn btn--secondary btn--lg" data-tab="projects">View Projects</button>
+        <section id="home" class="tab-content active">
+            <div class="hero">
+                <h2>Welcome to Python Adventures! 🚀</h2>
+                <p>Learn Python programming through fun, interactive lessons and step-by-step projects designed just for kids!</p>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-number" id="completed-lessons">0</div>
+                        <div class="stat-label">Lessons Completed</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="completed-projects">0</div>
+                        <div class="stat-label">Projects Finished</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="total-progress">0%</div>
+                        <div class="stat-label">Overall Progress</div>
                     </div>
                 </div>
-                <div class="hero-robot">
-                    <div class="robot">🤖</div>
-                    <div class="speech-bubble">Let's code together!</div>
+            </div>
+
+            <div class="challenge-section">
+                <h3>🎯 Challenge Yourself!</h3>
+                <div class="challenge-card">
+                    <h4>Daily Coding Challenge</h4>
+                    <p>Try to solve today's puzzle: Create a program that prints your name in a fun pattern using loops!</p>
+                    <button class="btn btn--primary" onclick="showChallenge()">Start Challenge</button>
                 </div>
             </div>
 
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">📚</div>
-                    <h3>Interactive Lessons</h3>
-                    <p>Learn Python step-by-step with visual examples and hands-on exercises</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🎮</div>
-                    <h3>Fun Projects</h3>
-                    <p>Build games, calculators, and cool programs with detailed instructions</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🏆</div>
-                    <h3>Track Progress</h3>
-                    <p>See your progress and celebrate achievements as you learn</p>
+            <div class="achievements-section">
+                <h3>🏆 Your Achievements</h3>
+                <div class="achievements-grid" id="achievements-grid">
+                    <!-- Achievements will be populated by JavaScript -->
                 </div>
             </div>
         </section>
 
         <!-- Learn Tab -->
-        <section id="learn-tab" class="tab-content">
-            <div class="learn-header">
-                <h1>Python Learning Path 🐍</h1>
-                <p>Master Python programming with our structured lessons!</p>
-            </div>
-
-            <div class="lessons-grid" id="lessons-grid">
-                <!-- Lessons will be populated by JavaScript -->
-            </div>
-
-            <!-- Lesson Detail View -->
-            <div id="lesson-detail" class="lesson-detail hidden">
-                <button class="btn btn--secondary back-btn" id="back-to-lessons">← Back to Lessons</button>
-                <div class="lesson-content">
-                    <!-- Content will be populated by JavaScript -->
-                </div>
+        <section id="learn" class="tab-content">
+            <h2>📚 Learning Modules</h2>
+            <div class="modules-grid" id="modules-grid">
+                <!-- Modules will be populated by JavaScript -->
             </div>
         </section>
 
         <!-- Projects Tab -->
-        <section id="projects-tab" class="tab-content">
-            <div class="projects-header">
-                <h1>Coding Projects 💻</h1>
-                <p>Build amazing projects with step-by-step guides!</p>
-            </div>
-
+        <section id="projects" class="tab-content">
+            <h2>🛠️ Step-by-Step Projects</h2>
             <div class="projects-grid" id="projects-grid">
                 <!-- Projects will be populated by JavaScript -->
             </div>
+        </section>
 
-            <!-- Project Detail View -->
-            <div id="project-detail" class="project-detail hidden">
-                <button class="btn btn--secondary back-btn" id="back-to-projects">← Back to Projects</button>
-                <div class="project-content">
-                    <!-- Content will be populated by JavaScript -->
+        <!-- Progress Tab -->
+        <section id="progress" class="tab-content">
+            <h2>📊 Your Learning Progress</h2>
+            <div class="progress-overview">
+                <div class="progress-chart">
+                    <h3>Module Progress</h3>
+                    <div id="module-progress-list">
+                        <!-- Module progress will be populated by JavaScript -->
+                    </div>
+                </div>
+                <div class="project-progress">
+                    <h3>Project Progress</h3>
+                    <div id="project-progress-list">
+                        <!-- Project progress will be populated by JavaScript -->
+                    </div>
                 </div>
             </div>
         </section>
     </main>
 
-    <!-- Code Editor Modal -->
-    <div id="code-modal" class="modal hidden">
+    <!-- Project Modal -->
+    <div id="project-modal" class="modal">
         <div class="modal-content">
             <div class="modal-header">
-                <h3>Try the Code!</h3>
-                <button class="close-modal">×</button>
+                <h3 id="modal-project-title"></h3>
+                <button class="close-modal" onclick="closeProjectModal()">&times;</button>
             </div>
             <div class="modal-body">
-                <div class="code-editor">
-                    <textarea id="code-input" class="form-control" rows="10" placeholder="Write your Python code here..."></textarea>
+                <div class="project-info">
+                    <span class="project-difficulty" id="modal-difficulty"></span>
+                    <span class="project-time" id="modal-time"></span>
                 </div>
-                <div class="code-actions">
-                    <button class="btn btn--primary" id="run-code">Run Code</button>
-                    <button class="btn btn--secondary" id="clear-code">Clear</button>
+                <div class="step-progress">
+                    <div class="step-indicator" id="step-indicator"></div>
                 </div>
-                <div class="code-output">
-                    <h4>Output:</h4>
-                    <pre id="output-display">Click "Run Code" to see the output!</pre>
+                <div class="step-content" id="step-content">
+                    <!-- Step content will be populated by JavaScript -->
+                </div>
+                <div class="step-navigation">
+                    <button class="btn btn--secondary" id="prev-step" onclick="previousStep()" disabled>Previous</button>
+                    <button class="btn btn--primary" id="next-step" onclick="nextStep()">Next Step</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Code Challenge Modal -->
+    <div id="challenge-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>🎯 Daily Challenge</h3>
+                <button class="close-modal" onclick="closeChallengeModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="challenge-content">
+                    <h4>Name Pattern Challenge</h4>
+                    <p>Create a program that prints your name in a fun pattern! Here's a hint to get you started:</p>
+                    <div class="code-editor">
+                        <div class="code-header">
+                            <span>Python Code</span>
+                            <button class="btn btn--sm" onclick="runChallengeCode()">▶ Run Code</button>
+                        </div>
+                        <textarea id="challenge-code" class="code-input" placeholder="# Type your code here
+name = 'Python'
+# Try using loops to create a pattern!"></textarea>
+                    </div>
+                    <div class="code-output">
+                        <div class="output-header">Output</div>
+                        <pre id="challenge-output" class="output-content">Click 'Run Code' to see your output!</pre>
+                    </div>
                 </div>
             </div>
         </div>
