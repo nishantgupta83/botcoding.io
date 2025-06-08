@@ -1,758 +1,737 @@
-// Application Data
-const appData = {
-  modules: [
-    {
-      title: "Python Basics",
-      progress: 80,
-      topics: ["Print Statements", "Comments", "Variables", "Data Types"]
+// CodeBot Academy - Interactive Learning Platform for Kids
+// Main JavaScript functionality
+
+// Global state management
+let userProgress = {
+    modules: {
+        'python-basics': { progress: 80, completed: [] },
+        'decisions': { progress: 60, completed: [] },
+        'loops': { progress: 40, completed: [] },
+        'data-storage': { progress: 20, completed: [] },
+        'functions': { progress: 0, completed: [] }
     },
-    {
-      title: "Making Decisions", 
-      progress: 60,
-      topics: ["Boolean Logic", "If Statements", "Comparison Operators", "Logical Operators"]
+    projects: {
+        'hello-world-art': false,
+        'magic-8-ball': false,
+        'pet-age-calculator': false,
+        'password-generator': false,
+        'rock-paper-scissors': false
     },
-    {
-      title: "Repeating Actions",
-      progress: 40, 
-      topics: ["For Loops", "While Loops", "Break/Continue", "Nested Loops"]
-    },
-    {
-      title: "Storing Data",
-      progress: 20,
-      topics: ["Lists", "Dictionaries", "Strings", "Tuples"]
-    },
-    {
-      title: "Creating Functions",
-      progress: 0,
-      topics: ["Function Definition", "Parameters", "Return Values", "Scope"]
+    achievements: {
+        'first-print': true,
+        'loop-master': false,
+        'function-creator': false
     }
-  ],
-  projects: [
-    {
-      title: "Hello World Art",
-      difficulty: "Beginner",
-      time: "30 minutes",
-      icon: "🎨",
-      unlocked: true,
-      steps: [
-        {
-          title: "Step 1: Basic Print Statement",
-          description: "Let's start by printing a simple message",
-          code: "print('Hello, World!')",
-          explanation: "The print() function displays text on the screen"
-        },
-        {
-          title: "Step 2: Add Colors with Text",
-          description: "Now let's make it more colorful with ASCII art",
-          code: "print('🌟 Hello, World! 🌟')\nprint('Welcome to Python!')",
-          explanation: "We can add emojis and multiple lines to make it look better"
-        },
-        {
-          title: "Step 3: Create Your Own Art",
-          description: "Design your own ASCII art message",
-          code: "print('*' * 20)\nprint('*   HELLO PYTHON   *')\nprint('*' * 20)",
-          explanation: "Use symbols and repetition to create patterns"
-        }
-      ]
-    },
-    {
-      title: "Magic 8 Ball",
-      difficulty: "Beginner", 
-      time: "45 minutes",
-      icon: "🎱",
-      unlocked: true,
-      steps: [
-        {
-          title: "Step 1: Import Random",
-          description: "We need the random module to pick answers",
-          code: "import random",
-          explanation: "The random module helps us pick random things"
-        },
-        {
-          title: "Step 2: Create Answer List",
-          description: "Make a list of possible Magic 8 Ball answers",
-          code: "answers = ['Yes', 'No', 'Maybe', 'Ask again later']",
-          explanation: "Lists store multiple items we can choose from"
-        },
-        {
-          title: "Step 3: Pick Random Answer",
-          description: "Use random.choice to pick an answer",
-          code: "question = input('Ask a question: ')\nprint(random.choice(answers))",
-          explanation: "random.choice picks one item randomly from our list"
-        }
-      ]
-    },
-    {
-      title: "Pet Age Calculator",
-      difficulty: "Beginner",
-      time: "35 minutes", 
-      icon: "🐕",
-      unlocked: true,
-      steps: [
-        {
-          title: "Step 1: Get User Input",
-          description: "Ask for the pet's age and type",
-          code: "pet_age = int(input('How old is your pet? '))\npet_type = input('What type of pet? (dog/cat) ')",
-          explanation: "We convert the age to a number using int()"
-        },
-        {
-          title: "Step 2: Calculate Human Years",
-          description: "Use different formulas for dogs and cats",
-          code: "if pet_type == 'dog':\n    human_age = pet_age * 7\nelse:\n    human_age = pet_age * 5",
-          explanation: "Dogs age 7 years for every human year, cats age 5"
-        },
-        {
-          title: "Step 3: Show the Result",
-          description: "Display the calculated age",
-          code: "print(f'Your {pet_type} is {human_age} in human years!')",
-          explanation: "f-strings let us put variables inside text"
-        }
-      ]
-    },
-    {
-      title: "Password Generator",
-      difficulty: "Intermediate",
-      time: "60 minutes",
-      icon: "🔐",
-      unlocked: false,
-      steps: [
-        {
-          title: "Step 1: Import Modules",
-          description: "Import random and string modules",
-          code: "import random\nimport string",
-          explanation: "string module gives us letters and numbers to use"
-        },
-        {
-          title: "Step 2: Create Character Sets",
-          description: "Define what characters to include",
-          code: "letters = string.ascii_letters\nnumbers = string.digits\nsymbols = '!@#$%'",
-          explanation: "We combine different types of characters"
-        },
-        {
-          title: "Step 3: Generate Password",
-          description: "Create a random password",
-          code: "all_chars = letters + numbers + symbols\npassword = ''.join(random.choice(all_chars) for i in range(8))\nprint(f'Your password: {password}')",
-          explanation: "We pick 8 random characters and join them together"
-        }
-      ]
-    },
-    {
-      title: "Rock Paper Scissors",
-      difficulty: "Intermediate",
-      time: "75 minutes",
-      icon: "✂️",
-      unlocked: false,
-      steps: [
-        {
-          title: "Step 1: Setup Game Options",
-          description: "Create the game choices",
-          code: "import random\nchoices = ['rock', 'paper', 'scissors']\nprint('Welcome to Rock Paper Scissors!')",
-          explanation: "We store the three game options in a list"
-        },
-        {
-          title: "Step 2: Get Player Choice",
-          description: "Ask player what they choose",
-          code: "player = input('Choose rock, paper, or scissors: ').lower()\ncomputer = random.choice(choices)\nprint(f'Computer chose: {computer}')",
-          explanation: ".lower() makes input lowercase so 'Rock' becomes 'rock'"
-        },
-        {
-          title: "Step 3: Determine Winner",
-          description: "Compare choices and declare winner",
-          code: "if player == computer:\n    print('Tie!')\nelif (player == 'rock' and computer == 'scissors') or (player == 'paper' and computer == 'rock') or (player == 'scissors' and computer == 'paper'):\n    print('You win!')\nelse:\n    print('Computer wins!')",
-          explanation: "We check all winning combinations for the player"
-        }
-      ]
-    }
-  ],
-  achievements: [
-    {name: "First Steps", description: "Complete your first lesson", icon: "👣"},
-    {name: "Code Warrior", description: "Complete 5 projects", icon: "⚔️"},
-    {name: "Python Master", description: "Complete all modules", icon: "🏆"}
-  ]
 };
 
-// Session-based progress tracking (since localStorage is not available)
-class ProgressTracker {
-  constructor() {
-    this.progress = {
-      modules: {},
-      projects: {},
-      achievements: [],
-      completedLessons: 0,
-      completedProjects: 0
+// Initialize the application when DOM is loaded
+document.addEventListener('DOMContentLoaded', function() {
+    initializeApp();
+    loadProgress();
+    setupNavigation();
+    setupChatInput();
+    updateProgressDisplay();
+});
+
+// Initialize the application
+function initializeApp() {
+    console.log('🤖 CodeBot Academy initialized!');
+    
+    // Add welcome message
+    showWelcomeMessage();
+    
+    // Setup smooth scrolling for all anchor links
+    setupSmoothScrolling();
+    
+    // Setup intersection observer for section highlighting
+    setupSectionObserver();
+    
+    // Add click tracking for educational analytics
+    setupClickTracking();
+}
+
+// Navigation functionality
+function setupNavigation() {
+    const navLinks = document.querySelectorAll('.nav__link');
+    
+    navLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            // Remove active class from all links
+            navLinks.forEach(l => l.classList.remove('active'));
+            
+            // Add active class to clicked link
+            this.classList.add('active');
+            
+            // Get target section
+            const targetId = this.getAttribute('href').substring(1);
+            scrollToSection(targetId);
+        });
+    });
+}
+
+// Smooth scrolling to sections
+function scrollToSection(sectionId) {
+    const section = document.getElementById(sectionId);
+    if (section) {
+        section.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+        });
+        
+        // Update URL without triggering navigation
+        history.pushState(null, null, `#${sectionId}`);
+    }
+}
+
+// Setup smooth scrolling for all anchor links
+function setupSmoothScrolling() {
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href').substring(1);
+            scrollToSection(targetId);
+        });
+    });
+}
+
+// Setup intersection observer for automatic nav highlighting
+function setupSectionObserver() {
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav__link');
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                // Remove active class from all nav links
+                navLinks.forEach(link => link.classList.remove('active'));
+                
+                // Add active class to corresponding nav link
+                const activeLink = document.querySelector(`.nav__link[href="#${entry.target.id}"]`);
+                if (activeLink) {
+                    activeLink.classList.add('active');
+                }
+            }
+        });
+    }, {
+        threshold: 0.3,
+        rootMargin: '-100px 0px -100px 0px'
+    });
+    
+    sections.forEach(section => observer.observe(section));
+}
+
+// Toggle code examples visibility
+function toggleCode(codeId) {
+    const codeBlock = document.getElementById(codeId);
+    const button = event.target;
+    
+    if (codeBlock) {
+        if (codeBlock.classList.contains('hidden')) {
+            codeBlock.classList.remove('hidden');
+            button.textContent = '🙈 Hide Code';
+            button.classList.add('btn--primary');
+            button.classList.remove('btn--secondary');
+            
+            // Track topic completion
+            trackTopicCompletion(codeId);
+            
+            // Add syntax highlighting
+            highlightSyntax(codeBlock);
+            
+            // Show celebration animation
+            showCelebration(button);
+        } else {
+            codeBlock.classList.add('hidden');
+            button.textContent = '👀 Try This Code';
+            button.classList.remove('btn--primary');
+            button.classList.add('btn--secondary');
+        }
+    }
+}
+
+// Add syntax highlighting to code blocks
+function highlightSyntax(codeBlock) {
+    const code = codeBlock.querySelector('code');
+    if (code) {
+        let text = code.textContent;
+        
+        // Simple syntax highlighting for Python
+        text = text
+            .replace(/\b(def|if|elif|else|for|while|import|from|return|print|input|len|range|and|or|not|True|False|None)\b/g, '<span class="keyword">$1</span>')
+            .replace(/'([^']*)'/g, '<span class="string">\'$1\'</span>')
+            .replace(/"([^"]*)"/g, '<span class="string">"$1"</span>')
+            .replace(/#.*$/gm, '<span class="comment">$&</span>')
+            .replace(/\b(\d+)\b/g, '<span class="number">$1</span>');
+        
+        code.innerHTML = text;
+    }
+}
+
+// Track topic completion for progress
+function trackTopicCompletion(topicId) {
+    // Find which module this topic belongs to
+    const topic = document.getElementById(topicId.replace('-code', ''));
+    if (!topic) return;
+    
+    const module = topic.closest('.module');
+    if (!module) return;
+    
+    const moduleId = module.id;
+    
+    // Mark topic as completed
+    if (!userProgress.modules[moduleId].completed.includes(topicId)) {
+        userProgress.modules[moduleId].completed.push(topicId);
+        
+        // Update progress percentage
+        updateModuleProgress(moduleId);
+        
+        // Save progress
+        saveProgress();
+        
+        // Check for achievements
+        checkAchievements();
+    }
+}
+
+// Update module progress based on completed topics
+function updateModuleProgress(moduleId) {
+    const module = document.getElementById(moduleId);
+    const topics = module.querySelectorAll('.topic');
+    const completedTopics = userProgress.modules[moduleId].completed.length;
+    const totalTopics = topics.length;
+    
+    const progressPercentage = Math.round((completedTopics / totalTopics) * 100);
+    userProgress.modules[moduleId].progress = progressPercentage;
+    
+    // Update progress bar in UI
+    const progressBar = module.querySelector('.progress-bar__fill');
+    const progressText = module.querySelector('.progress-text');
+    
+    if (progressBar) {
+        progressBar.style.width = `${progressPercentage}%`;
+    }
+    
+    if (progressText) {
+        progressText.textContent = `${progressPercentage}% Complete`;
+    }
+    
+    // Update overall progress section
+    updateProgressDisplay();
+}
+
+// Complete a project
+function completeProject(projectId) {
+    userProgress.projects[projectId] = true;
+    
+    // Update UI
+    const projectCard = document.getElementById(projectId);
+    if (projectCard) {
+        projectCard.classList.add('completed');
+        
+        const button = projectCard.querySelector('.btn--primary');
+        if (button) {
+            button.textContent = '✅ Completed!';
+            button.classList.add('btn--success');
+            button.classList.remove('btn--primary');
+            button.disabled = true;
+        }
+    }
+    
+    // Save progress
+    saveProgress();
+    
+    // Check for achievements
+    checkAchievements();
+    
+    // Show celebration
+    showProjectCelebration(projectId);
+}
+
+// Check and unlock achievements
+function checkAchievements() {
+    // First Print achievement
+    if (userProgress.modules['python-basics'].completed.includes('print-code') && 
+        !userProgress.achievements['first-print']) {
+        unlockAchievement('first-print');
+    }
+    
+    // Loop Master achievement
+    if (userProgress.modules['loops'].progress >= 75 && 
+        !userProgress.achievements['loop-master']) {
+        unlockAchievement('loop-master');
+    }
+    
+    // Function Creator achievement
+    if (userProgress.modules['functions'].progress >= 50 && 
+        !userProgress.achievements['function-creator']) {
+        unlockAchievement('function-creator');
+    }
+}
+
+// Unlock an achievement
+function unlockAchievement(achievementId) {
+    userProgress.achievements[achievementId] = true;
+    
+    // Update UI
+    const achievement = document.getElementById(`achievement-${achievementId}`);
+    if (achievement) {
+        achievement.classList.remove('locked');
+        
+        // Show achievement notification
+        showAchievementNotification(achievementId);
+    }
+    
+    saveProgress();
+}
+
+// Show achievement notification
+function showAchievementNotification(achievementId) {
+    const achievements = {
+        'first-print': { title: 'First Print!', icon: '🏆' },
+        'loop-master': { title: 'Loop Master!', icon: '🔄' },
+        'function-creator': { title: 'Function Creator!', icon: '⚙️' }
     };
-    this.initializeProgress();
-  }
-
-  initializeProgress() {
-    // Initialize module progress from data
-    appData.modules.forEach((module, index) => {
-      this.progress.modules[index] = {
-        completed: module.progress === 100,
-        progress: module.progress
-      };
-    });
-
-    // Initialize project progress
-    appData.projects.forEach((project, index) => {
-      this.progress.projects[index] = {
-        currentStep: 0,
-        completed: false,
-        stepsCompleted: []
-      };
-    });
-
-    this.updateProjectUnlocks();
-    this.updateStats();
-  }
-
-  completeStep(projectIndex, stepIndex) {
-    if (!this.progress.projects[projectIndex].stepsCompleted.includes(stepIndex)) {
-      this.progress.projects[projectIndex].stepsCompleted.push(stepIndex);
-    }
     
-    const project = appData.projects[projectIndex];
-    if (this.progress.projects[projectIndex].stepsCompleted.length === project.steps.length) {
-      this.progress.projects[projectIndex].completed = true;
-      this.checkAchievements();
-      this.updateProjectUnlocks();
-    }
+    const achievement = achievements[achievementId];
     
-    this.updateStats();
-  }
-
-  updateModuleProgress(moduleIndex, progress) {
-    this.progress.modules[moduleIndex].progress = progress;
-    if (progress === 100) {
-      this.progress.modules[moduleIndex].completed = true;
-    }
-    this.updateProjectUnlocks();
-    this.updateStats();
-  }
-
-  updateProjectUnlocks() {
-    const completedProjects = Object.values(this.progress.projects).filter(p => p.completed).length;
-    
-    // Unlock intermediate projects after completing 2 beginner projects
-    appData.projects.forEach((project, index) => {
-      if (project.difficulty === "Intermediate") {
-        project.unlocked = completedProjects >= 2;
-      }
-    });
-  }
-
-  checkAchievements() {
-    const completedProjects = Object.values(this.progress.projects).filter(p => p.completed).length;
-    
-    if (completedProjects >= 1 && !this.progress.achievements.includes(0)) {
-      this.progress.achievements.push(0);
-      this.showAchievementNotification(appData.achievements[0]);
-    }
-    
-    if (completedProjects >= 5 && !this.progress.achievements.includes(1)) {
-      this.progress.achievements.push(1);
-      this.showAchievementNotification(appData.achievements[1]);
-    }
-    
-    const completedModules = Object.values(this.progress.modules).filter(m => m.completed).length;
-    if (completedModules === appData.modules.length && !this.progress.achievements.includes(2)) {
-      this.progress.achievements.push(2);
-      this.showAchievementNotification(appData.achievements[2]);
-    }
-  }
-
-  showAchievementNotification(achievement) {
-    // Simple achievement notification
+    // Create notification element
     const notification = document.createElement('div');
-    notification.style.cssText = `
-      position: fixed; top: 20px; right: 20px; background: var(--color-success);
-      color: white; padding: 16px; border-radius: 8px; z-index: 1001;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.15); animation: slideIn 0.3s ease;
-    `;
+    notification.className = 'achievement-notification';
     notification.innerHTML = `
-      <strong>🏆 Achievement Unlocked!</strong><br>
-      ${achievement.icon} ${achievement.name}
+        <div class="achievement-notification__content">
+            <div class="achievement-notification__icon">${achievement.icon}</div>
+            <div class="achievement-notification__text">
+                <h4>Achievement Unlocked!</h4>
+                <p>${achievement.title}</p>
+            </div>
+        </div>
     `;
+    
+    // Add styles
+    notification.style.cssText = `
+        position: fixed;
+        top: 100px;
+        right: 20px;
+        background: linear-gradient(135deg, #2E86C1, #BB8FCE);
+        color: white;
+        padding: 20px;
+        border-radius: 12px;
+        box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+        z-index: 1000;
+        animation: slideIn 0.5s ease-out;
+        max-width: 300px;
+    `;
+    
     document.body.appendChild(notification);
     
+    // Remove after 4 seconds
     setTimeout(() => {
-      notification.remove();
-    }, 3000);
-  }
-
-  updateStats() {
-    const completedLessons = Object.values(this.progress.modules).filter(m => m.completed).length;
-    const completedProjects = Object.values(this.progress.projects).filter(p => p.completed).length;
-    const totalProgress = Math.round(
-      (Object.values(this.progress.modules).reduce((sum, m) => sum + m.progress, 0) / 
-       (appData.modules.length * 100)) * 100
-    );
-
-    document.getElementById('completed-lessons').textContent = completedLessons;
-    document.getElementById('completed-projects').textContent = completedProjects;
-    document.getElementById('total-progress').textContent = `${totalProgress}%`;
-
-    this.progress.completedLessons = completedLessons;
-    this.progress.completedProjects = completedProjects;
-  }
+        notification.style.animation = 'slideOut 0.5s ease-in';
+        setTimeout(() => {
+            document.body.removeChild(notification);
+        }, 500);
+    }, 4000);
 }
 
-// Global progress tracker
-const progressTracker = new ProgressTracker();
-
-// Tab Navigation
-function initTabNavigation() {
-  const tabButtons = document.querySelectorAll('.nav__link');
-  const tabContents = document.querySelectorAll('.tab-content');
-
-  tabButtons.forEach(button => {
-    button.addEventListener('click', () => {
-      const targetTab = button.dataset.tab;
-      
-      // Update active states
-      tabButtons.forEach(btn => btn.classList.remove('active'));
-      tabContents.forEach(content => content.classList.remove('active'));
-      
-      button.classList.add('active');
-      document.getElementById(targetTab).classList.add('active');
-      
-      // Load content for specific tabs
-      if (targetTab === 'learn') renderModules();
-      if (targetTab === 'projects') renderProjects();
-      if (targetTab === 'progress') renderProgress();
+// Update progress display in progress section
+function updateProgressDisplay() {
+    const progressItems = document.querySelectorAll('.progress-item');
+    const moduleIds = ['python-basics', 'decisions', 'loops', 'data-storage', 'functions'];
+    
+    progressItems.forEach((item, index) => {
+        if (index < moduleIds.length) {
+            const moduleId = moduleIds[index];
+            const progress = userProgress.modules[moduleId].progress;
+            
+            const progressBar = item.querySelector('.progress-bar__fill');
+            const progressPercent = item.querySelector('.progress-percent');
+            
+            if (progressBar) {
+                progressBar.style.width = `${progress}%`;
+            }
+            
+            if (progressPercent) {
+                progressPercent.textContent = `${progress}%`;
+            }
+        }
     });
-  });
 }
 
-// Render Modules
-function renderModules() {
-  const container = document.getElementById('modules-grid');
-  container.innerHTML = '';
-
-  appData.modules.forEach((module, index) => {
-    const progress = progressTracker.progress.modules[index]?.progress || module.progress;
-    const moduleCard = document.createElement('div');
-    moduleCard.className = 'module-card';
-    moduleCard.innerHTML = `
-      <div class="module-header">
-        <h3 class="module-title">${module.title}</h3>
-        <span class="status ${progress === 100 ? 'status--success' : 'status--info'}">${progress}%</span>
-      </div>
-      <div class="module-progress">
-        <div class="module-progress-fill" style="width: ${progress}%"></div>
-      </div>
-      <ul class="module-topics">
-        ${module.topics.map(topic => `<li>📖 ${topic}</li>`).join('')}
-      </ul>
-    `;
+// AI Chat functionality
+function setupChatInput() {
+    const chatInput = document.getElementById('chat-input');
     
-    moduleCard.addEventListener('click', () => {
-      simulateModuleProgress(index);
-    });
-    
-    container.appendChild(moduleCard);
-  });
-}
-
-// Simulate module progress when clicked
-function simulateModuleProgress(moduleIndex) {
-  const currentProgress = progressTracker.progress.modules[moduleIndex].progress;
-  const newProgress = Math.min(currentProgress + 20, 100);
-  progressTracker.updateModuleProgress(moduleIndex, newProgress);
-  renderModules();
-  renderProjects(); // Re-render projects to update unlocks
-}
-
-// Render Projects
-function renderProjects() {
-  const container = document.getElementById('projects-grid');
-  container.innerHTML = '';
-
-  appData.projects.forEach((project, index) => {
-    const projectProgress = progressTracker.progress.projects[index];
-    const completedSteps = projectProgress.stepsCompleted.length;
-    const totalSteps = project.steps.length;
-    const isUnlocked = project.unlocked;
-    
-    const projectCard = document.createElement('div');
-    projectCard.className = `project-card ${!isUnlocked ? 'locked' : ''}`;
-    projectCard.innerHTML = `
-      <span class="project-icon">${isUnlocked ? project.icon : '🔒'}</span>
-      <h3 class="project-title">${project.title}</h3>
-      <div class="project-meta">
-        <span class="project-difficulty ${project.difficulty.toLowerCase()}">${project.difficulty}</span>
-        <span>⏱️ ${project.time}</span>
-      </div>
-      ${isUnlocked ? `
-        <div class="project-progress">
-          <div class="project-progress-fill" style="width: ${(completedSteps / totalSteps) * 100}%"></div>
-        </div>
-        <div style="text-align: center; margin-top: 12px; font-size: 14px; color: var(--color-text-secondary);">
-          ${completedSteps}/${totalSteps} steps completed
-        </div>
-      ` : `
-        <div style="text-align: center; margin-top: 12px; font-size: 14px; color: var(--color-text-secondary);">
-          Complete 2 beginner projects to unlock
-        </div>
-      `}
-    `;
-    
-    if (isUnlocked) {
-      projectCard.addEventListener('click', () => {
-        openProjectModal(index);
-      });
+    if (chatInput) {
+        chatInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                sendMessage();
+            }
+        });
     }
+}
+
+function sendMessage() {
+    const chatInput = document.getElementById('chat-input');
+    const chatMessages = document.getElementById('chat-messages');
     
-    container.appendChild(projectCard);
-  });
-}
-
-// Project Modal Management
-let currentProject = null;
-let currentStep = 0;
-
-function openProjectModal(projectIndex) {
-  currentProject = projectIndex;
-  currentStep = progressTracker.progress.projects[projectIndex].currentStep || 0;
-  
-  const project = appData.projects[projectIndex];
-  const modal = document.getElementById('project-modal');
-  
-  document.getElementById('modal-project-title').textContent = project.title;
-  document.getElementById('modal-difficulty').textContent = project.difficulty;
-  document.getElementById('modal-difficulty').className = `project-difficulty ${project.difficulty.toLowerCase()}`;
-  document.getElementById('modal-time').textContent = `⏱️ ${project.time}`;
-  
-  renderStepIndicator();
-  renderCurrentStep();
-  updateStepNavigation();
-  
-  modal.classList.add('active');
-}
-
-function closeProjectModal() {
-  document.getElementById('project-modal').classList.remove('active');
-  currentProject = null;
-  currentStep = 0;
-}
-
-function renderStepIndicator() {
-  const project = appData.projects[currentProject];
-  const indicator = document.getElementById('step-indicator');
-  const completedSteps = progressTracker.progress.projects[currentProject].stepsCompleted;
-  
-  indicator.innerHTML = '';
-  project.steps.forEach((step, index) => {
-    const dot = document.createElement('div');
-    dot.className = 'step-dot';
+    if (!chatInput || !chatMessages) return;
     
-    if (completedSteps.includes(index)) {
-      dot.classList.add('completed');
-    } else if (index === currentStep) {
-      dot.classList.add('active');
-    }
+    const message = chatInput.value.trim();
+    if (!message) return;
     
-    indicator.appendChild(dot);
-  });
-}
-
-function renderCurrentStep() {
-  const project = appData.projects[currentProject];
-  const step = project.steps[currentStep];
-  const container = document.getElementById('step-content');
-  
-  container.innerHTML = `
-    <h4 class="step-title">${step.title}</h4>
-    <p class="step-description">${step.description}</p>
-    <div class="code-block">
-      <div class="code-header">
-        <span>Python Code</span>
-        <button class="btn btn--sm" onclick="runStepCode()">▶ Run Code</button>
-      </div>
-      <div class="code-content">${highlightPythonSyntax(step.code)}</div>
-    </div>
-    <div class="code-output">
-      <div class="output-header">Output</div>
-      <pre class="output-content" id="step-output">Click 'Run Code' to see the output!</pre>
-    </div>
-    <div class="step-explanation">
-      <h4>💡 What's happening?</h4>
-      <p>${step.explanation}</p>
-    </div>
-  `;
-}
-
-function highlightPythonSyntax(code) {
-  return code
-    .split('\n')
-    .map((line, index) => {
-      let highlightedLine = line
-        .replace(/\b(import|from|def|class|if|elif|else|for|while|try|except|finally|with|as|return|break|continue|pass|and|or|not|in|is|True|False|None)\b/g, '<span class="keyword">$1</span>')
-        .replace(/(['"])(.*?)\1/g, '<span class="string">$1$2$1</span>')
-        .replace(/\b(\d+)\b/g, '<span class="number">$1</span>')
-        .replace(/(#.*$)/g, '<span class="comment">$1</span>')
-        .replace(/\b(print|input|len|range|str|int|float|list|dict)\b/g, '<span class="function">$1</span>');
-      
-      return `<span class="code-line" data-line="${index + 1}">${highlightedLine}</span>`;
-    })
-    .join('\n');
-}
-
-// IMPROVED: Fixed code execution to be more reliable
-function runStepCode() {
-  const outputElement = document.getElementById('step-output');
-  const project = appData.projects[currentProject];
-  const step = project.steps[currentStep];
-  
-  // Show loading state
-  outputElement.textContent = 'Running code...';
-  outputElement.style.color = '#ffaa00';
-  
-  // Simulate code execution delay for better UX
-  setTimeout(() => {
-    const output = simulateCodeExecution(step.code);
-    outputElement.textContent = output;
-    outputElement.style.color = '#00ff00';
+    // Add user message
+    addChatMessage(message, 'user');
     
-    // Mark step as completed
-    progressTracker.completeStep(currentProject, currentStep);
-    renderStepIndicator();
+    // Clear input
+    chatInput.value = '';
     
-    // Show success feedback
+    // Simulate AI response
     setTimeout(() => {
-      outputElement.style.color = '#00ff00';
-    }, 100);
-  }, 500);
+        const response = generateAIResponse(message);
+        addChatMessage(response, 'bot');
+    }, 1000);
 }
 
-function simulateCodeExecution(code) {
-  // Simple simulation of Python code execution with consistent results
-  if (code.includes("print('Hello, World!')")) {
-    return "Hello, World!";
-  } else if (code.includes("print('🌟 Hello, World! 🌟')")) {
-    return "🌟 Hello, World! 🌟\nWelcome to Python!";
-  } else if (code.includes("print('*' * 20)")) {
-    return "********************\n*   HELLO PYTHON   *\n********************";
-  } else if (code.includes("import random") && !code.includes("choice")) {
-    return "✅ Random module imported successfully!";
-  } else if (code.includes("answers = ")) {
-    return "✅ Magic 8 Ball answers list created!\n['Yes', 'No', 'Maybe', 'Ask again later']";
-  } else if (code.includes("random.choice(answers)")) {
-    const answers = ['Yes', 'No', 'Maybe', 'Ask again later'];
-    const chosen = answers[Math.floor(Math.random() * answers.length)];
-    return `Ask a question: Will I become a great programmer?\n🎱 ${chosen}`;
-  } else if (code.includes("pet_age = int") && code.includes("pet_type = input")) {
-    return "How old is your pet? 5\nWhat type of pet? (dog/cat) dog\n✅ Input received!";
-  } else if (code.includes("human_age = pet_age")) {
-    return "✅ Age calculation complete!\nDog: 5 years = 35 human years\nCat: 5 years = 25 human years";
-  } else if (code.includes("f'Your {pet_type}")) {
-    return "Your dog is 35 in human years! 🐕";
-  } else if (code.includes("import string")) {
-    return "✅ String and random modules imported!\nReady to generate passwords!";
-  } else if (code.includes("letters = string.ascii_letters")) {
-    return "✅ Character sets created!\nLetters: abcABC...\nNumbers: 0123456789\nSymbols: !@#$%";
-  } else if (code.includes("password =")) {
-    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%';
-    let password = '';
-    for (let i = 0; i < 8; i++) {
-      password += chars.charAt(Math.floor(Math.random() * chars.length));
+function askQuickQuestion(question) {
+    const chatInput = document.getElementById('chat-input');
+    if (chatInput) {
+        chatInput.value = question;
+        sendMessage();
     }
-    return `Your password: ${password}\n🔐 Strong password generated!`;
-  } else if (code.includes("choices = ['rock'")) {
-    return "Welcome to Rock Paper Scissors!\n✅ Game setup complete!";
-  } else if (code.includes("player = input")) {
-    const choices = ['rock', 'paper', 'scissors'];
-    const computerChoice = choices[Math.floor(Math.random() * choices.length)];
-    return `Choose rock, paper, or scissors: rock\nComputer chose: ${computerChoice}`;
-  } else if (code.includes("if player == computer")) {
-    const outcomes = ['You win! 🎉', 'Computer wins! 🤖', 'It\'s a tie! 🤝'];
-    return outcomes[Math.floor(Math.random() * outcomes.length)];
-  }
-  
-  return "✅ Code executed successfully!";
 }
 
-function nextStep() {
-  const project = appData.projects[currentProject];
-  if (currentStep < project.steps.length - 1) {
-    currentStep++;
-    renderStepIndicator();
-    renderCurrentStep();
-    updateStepNavigation();
+function addChatMessage(message, sender) {
+    const chatMessages = document.getElementById('chat-messages');
     
-    // Update progress
-    progressTracker.progress.projects[currentProject].currentStep = currentStep;
-  } else {
-    // Project completed
-    progressTracker.progress.projects[currentProject].completed = true;
-    progressTracker.checkAchievements();
-    closeProjectModal();
-    renderProjects();
-  }
-}
-
-function previousStep() {
-  if (currentStep > 0) {
-    currentStep--;
-    renderStepIndicator();
-    renderCurrentStep();
-    updateStepNavigation();
+    const messageDiv = document.createElement('div');
+    messageDiv.className = `message ${sender}-message`;
     
-    progressTracker.progress.projects[currentProject].currentStep = currentStep;
-  }
-}
-
-function updateStepNavigation() {
-  const project = appData.projects[currentProject];
-  const prevBtn = document.getElementById('prev-step');
-  const nextBtn = document.getElementById('next-step');
-  
-  prevBtn.disabled = currentStep === 0;
-  
-  if (currentStep === project.steps.length - 1) {
-    nextBtn.textContent = 'Complete Project 🎉';
-  } else {
-    nextBtn.textContent = 'Next Step';
-  }
-}
-
-// Progress Tab
-function renderProgress() {
-  renderModuleProgress();
-  renderProjectProgress();
-}
-
-function renderModuleProgress() {
-  const container = document.getElementById('module-progress-list');
-  container.innerHTML = '';
-
-  appData.modules.forEach((module, index) => {
-    const progress = progressTracker.progress.modules[index]?.progress || module.progress;
-    const item = document.createElement('div');
-    item.className = 'progress-item';
-    item.innerHTML = `
-      <h4>${module.title}</h4>
-      <div class="progress-bar">
-        <div class="progress-bar-fill" style="width: ${progress}%"></div>
-      </div>
-    `;
-    container.appendChild(item);
-  });
-}
-
-function renderProjectProgress() {
-  const container = document.getElementById('project-progress-list');
-  container.innerHTML = '';
-
-  appData.projects.forEach((project, index) => {
-    const projectProgress = progressTracker.progress.projects[index];
-    const completedSteps = projectProgress.stepsCompleted.length;
-    const totalSteps = project.steps.length;
-    const percentage = Math.round((completedSteps / totalSteps) * 100);
+    const avatar = sender === 'bot' ? '🤖' : '👨‍💻';
     
-    const item = document.createElement('div');
-    item.className = 'progress-item';
-    item.innerHTML = `
-      <h4>${project.unlocked ? project.icon : '🔒'} ${project.title}</h4>
-      <div class="progress-bar">
-        <div class="progress-bar-fill" style="width: ${percentage}%"></div>
-      </div>
+    messageDiv.innerHTML = `
+        <div class="message-avatar">${avatar}</div>
+        <div class="message-content">
+            <p>${message}</p>
+        </div>
     `;
-    container.appendChild(item);
-  });
+    
+    chatMessages.appendChild(messageDiv);
+    chatMessages.scrollTop = chatMessages.scrollHeight;
 }
 
-// Achievements
-function renderAchievements() {
-  const container = document.getElementById('achievements-grid');
-  container.innerHTML = '';
+function generateAIResponse(question) {
+    const responses = {
+        'variable': 'A variable is like a box where you store information! You create one by writing: name = "Alice". The box is called "name" and it contains "Alice"! 📦',
+        'list': 'A list is like a shopping list! You create one by writing: fruits = ["apple", "banana", "orange"]. Lists help you store multiple items together! 📝',
+        'function': 'A function is like a recipe! It takes ingredients (parameters) and makes something new. You create one with: def my_function(): 🍳',
+        'loop': 'Loops help you repeat actions! A for loop is like saying "do this 5 times": for i in range(5): print("Hello!") 🔄',
+        'if': 'If statements help your program make decisions! Like: if weather == "sunny": print("Wear sunglasses!") ☀️'
+    };
+    
+    const lowerQuestion = question.toLowerCase();
+    
+    if (lowerQuestion.includes('variable')) {
+        return responses.variable;
+    } else if (lowerQuestion.includes('list')) {
+        return responses.list;
+    } else if (lowerQuestion.includes('function')) {
+        return responses.function;
+    } else if (lowerQuestion.includes('loop') || lowerQuestion.includes('repeat')) {
+        return responses.loop;
+    } else if (lowerQuestion.includes('if') || lowerQuestion.includes('decision')) {
+        return responses.if;
+    } else {
+        return `Great question! 🤔 Programming is all about breaking big problems into smaller steps. Try exploring our learning modules to discover more about Python! Remember: every expert was once a beginner! 🌟`;
+    }
+}
 
-  appData.achievements.forEach((achievement, index) => {
-    const earned = progressTracker.progress.achievements.includes(index);
-    const card = document.createElement('div');
-    card.className = `achievement-card ${earned ? 'earned' : ''}`;
-    card.innerHTML = `
-      <div class="achievement-icon">${achievement.icon}</div>
-      <div class="achievement-name">${achievement.name}</div>
-      <div class="achievement-desc">${achievement.description}</div>
+// Show celebration animations
+function showCelebration(element) {
+    // Create celebration particles
+    const colors = ['#2E86C1', '#F8C471', '#58D68D', '#F1948A', '#BB8FCE'];
+    
+    for (let i = 0; i < 10; i++) {
+        createParticle(element, colors[Math.floor(Math.random() * colors.length)]);
+    }
+}
+
+function createParticle(element, color) {
+    const particle = document.createElement('div');
+    particle.style.cssText = `
+        position: absolute;
+        width: 6px;
+        height: 6px;
+        background: ${color};
+        border-radius: 50%;
+        pointer-events: none;
+        z-index: 1000;
     `;
-    container.appendChild(card);
-  });
+    
+    const rect = element.getBoundingClientRect();
+    const startX = rect.left + rect.width / 2;
+    const startY = rect.top + rect.height / 2;
+    
+    particle.style.left = startX + 'px';
+    particle.style.top = startY + 'px';
+    
+    document.body.appendChild(particle);
+    
+    // Animate particle
+    const angle = Math.random() * Math.PI * 2;
+    const distance = 50 + Math.random() * 50;
+    const endX = startX + Math.cos(angle) * distance;
+    const endY = startY + Math.sin(angle) * distance;
+    
+    particle.animate([
+        { transform: 'translate(0, 0) scale(1)', opacity: 1 },
+        { transform: `translate(${endX - startX}px, ${endY - startY}px) scale(0)`, opacity: 0 }
+    ], {
+        duration: 800,
+        easing: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)'
+    }).onfinish = () => {
+        document.body.removeChild(particle);
+    };
 }
 
-// Challenge Modal
-function showChallenge() {
-  document.getElementById('challenge-modal').classList.add('active');
-}
-
-function closeChallengeModal() {
-  document.getElementById('challenge-modal').classList.remove('active');
-}
-
-function runChallengeCode() {
-  const code = document.getElementById('challenge-code').value;
-  const outputElement = document.getElementById('challenge-output');
-  
-  outputElement.textContent = 'Running your code...';
-  outputElement.style.color = '#ffaa00';
-  
-  setTimeout(() => {
-    const output = simulateChallengeCode(code);
-    outputElement.textContent = output;
-    outputElement.style.color = '#00ff00';
-  }, 300);
-}
-
-function simulateChallengeCode(code) {
-  if (code.trim() === '') {
-    return 'Please write some code first!';
-  }
-  
-  if (code.includes('for') && code.includes('print') && code.includes('name')) {
-    return `P\nPy\nPyt\nPyth\nPytho\nPython\n\n🎉 Amazing pattern! You're getting the hang of loops!`;
-  } else if (code.includes('for') && code.includes('print')) {
-    return `*\n**\n***\n****\n*****\n\n👏 Great job using loops to create patterns!`;
-  } else if (code.includes('print') && code.includes('name')) {
-    return 'Python Programmer\n\n✨ Nice! Try using a loop to make it more interesting.';
-  } else if (code.includes('print')) {
-    return 'Hello World!\n\n👍 Good start! Try adding your name and using a loop.';
-  } else {
-    return '✅ Code executed! Try adding some print statements to see output.';
-  }
-}
-
-// Initialize Application
-function initApp() {
-  initTabNavigation();
-  renderAchievements();
-  renderModules();
-  renderProjects();
-  
-  // Close modals when clicking outside
-  document.getElementById('project-modal').addEventListener('click', (e) => {
-    if (e.target.id === 'project-modal') {
-      closeProjectModal();
+function showProjectCelebration(projectId) {
+    const projectCard = document.getElementById(projectId);
+    if (projectCard) {
+        // Create celebration overlay
+        const celebration = document.createElement('div');
+        celebration.innerHTML = '🎉 Project Complete! 🎉';
+        celebration.style.cssText = `
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: linear-gradient(135deg, #58D68D, #2E86C1);
+            color: white;
+            padding: 20px;
+            border-radius: 12px;
+            font-weight: bold;
+            font-size: 18px;
+            z-index: 100;
+            animation: celebrationPop 2s ease-out;
+        `;
+        
+        projectCard.style.position = 'relative';
+        projectCard.appendChild(celebration);
+        
+        setTimeout(() => {
+            projectCard.removeChild(celebration);
+        }, 2000);
+        
+        // Add particles
+        showCelebration(projectCard);
     }
-  });
-  
-  document.getElementById('challenge-modal').addEventListener('click', (e) => {
-    if (e.target.id === 'challenge-modal') {
-      closeChallengeModal();
-    }
-  });
-  
-  // Add keyboard shortcuts
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') {
-      closeProjectModal();
-      closeChallengeModal();
-    }
-  });
 }
 
-// Start the application when DOM is ready
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', initApp);
-} else {
-  initApp();
+// Welcome message
+function showWelcomeMessage() {
+    // Check if user is returning
+    const isReturning = localStorage.getItem('codebot_returning_user');
+    
+    if (!isReturning) {
+        setTimeout(() => {
+            addChatMessage("Welcome to CodeBot Academy! 🎉 I'm your AI programming assistant. Click on any 'Try This Code' button to start learning Python! Ask me questions anytime - I'm here to help! 🤖", 'bot');
+            localStorage.setItem('codebot_returning_user', 'true');
+        }, 1000);
+    } else {
+        setTimeout(() => {
+            addChatMessage("Welcome back to CodeBot Academy! 🌟 Ready to continue your Python adventure? I'm here if you need any help! 🐍", 'bot');
+        }, 1000);
+    }
 }
+
+// Click tracking for educational analytics
+function setupClickTracking() {
+    document.addEventListener('click', function(e) {
+        const target = e.target;
+        
+        // Track code example views
+        if (target.classList.contains('try-code-btn')) {
+            console.log('📊 Code example viewed:', target.closest('.topic')?.id);
+        }
+        
+        // Track project interactions
+        if (target.textContent.includes('Mark Complete')) {
+            console.log('📊 Project completed:', target.closest('.project-card')?.id);
+        }
+        
+        // Track module navigation
+        if (target.classList.contains('nav__link')) {
+            console.log('📊 Section navigated:', target.getAttribute('href'));
+        }
+    });
+}
+
+// Local Storage functions
+function saveProgress() {
+    try {
+        localStorage.setItem('codebot_progress', JSON.stringify(userProgress));
+        console.log('💾 Progress saved successfully');
+    } catch (error) {
+        console.error('❌ Error saving progress:', error);
+    }
+}
+
+function loadProgress() {
+    try {
+        const savedProgress = localStorage.getItem('codebot_progress');
+        if (savedProgress) {
+            const loaded = JSON.parse(savedProgress);
+            userProgress = { ...userProgress, ...loaded };
+            console.log('📂 Progress loaded successfully');
+            
+            // Apply loaded progress to UI
+            applyProgressToUI();
+        }
+    } catch (error) {
+        console.error('❌ Error loading progress:', error);
+    }
+}
+
+function applyProgressToUI() {
+    // Update module progress bars
+    Object.keys(userProgress.modules).forEach(moduleId => {
+        const module = document.getElementById(moduleId);
+        if (module) {
+            const progress = userProgress.modules[moduleId].progress;
+            const progressBar = module.querySelector('.progress-bar__fill');
+            const progressText = module.querySelector('.progress-text');
+            
+            if (progressBar) progressBar.style.width = `${progress}%`;
+            if (progressText) progressText.textContent = `${progress}% Complete`;
+        }
+    });
+    
+    // Update completed projects
+    Object.keys(userProgress.projects).forEach(projectId => {
+        if (userProgress.projects[projectId]) {
+            const projectCard = document.getElementById(projectId);
+            if (projectCard) {
+                projectCard.classList.add('completed');
+                const button = projectCard.querySelector('.btn--primary');
+                if (button) {
+                    button.textContent = '✅ Completed!';
+                    button.classList.add('btn--success');
+                    button.classList.remove('btn--primary');
+                    button.disabled = true;
+                }
+            }
+        }
+    });
+    
+    // Update achievements
+    Object.keys(userProgress.achievements).forEach(achievementId => {
+        if (userProgress.achievements[achievementId]) {
+            const achievement = document.getElementById(`achievement-${achievementId}`);
+            if (achievement) {
+                achievement.classList.remove('locked');
+            }
+        }
+    });
+    
+    // Update overall progress display
+    updateProgressDisplay();
+}
+
+// Add CSS animations dynamically
+function addAnimationStyles() {
+    const style = document.createElement('style');
+    style.textContent = `
+        @keyframes slideIn {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        
+        @keyframes slideOut {
+            from { transform: translateX(0); opacity: 1; }
+            to { transform: translateX(100%); opacity: 0; }
+        }
+        
+        @keyframes celebrationPop {
+            0% { transform: translate(-50%, -50%) scale(0); opacity: 0; }
+            50% { transform: translate(-50%, -50%) scale(1.2); opacity: 1; }
+            100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+        }
+        
+        .achievement-notification {
+            font-family: 'Comic Neue', 'Comic Sans MS', cursive;
+        }
+        
+        .achievement-notification__content {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .achievement-notification__icon {
+            font-size: 24px;
+        }
+        
+        .achievement-notification__text h4 {
+            margin: 0 0 4px 0;
+            font-size: 16px;
+        }
+        
+        .achievement-notification__text p {
+            margin: 0;
+            font-size: 14px;
+            opacity: 0.9;
+        }
+    `;
+    document.head.appendChild(style);
+}
+
+// Initialize animations when DOM loads
+document.addEventListener('DOMContentLoaded', addAnimationStyles);
+
+// Export functions for global access
+window.scrollToSection = scrollToSection;
+window.toggleCode = toggleCode;
+window.completeProject = completeProject;
+window.sendMessage = sendMessage;
+window.askQuickQuestion = askQuickQuestion;
+
+// Add some fun console messages for curious kids!
+console.log(`
+🤖 CodeBot Academy Console 🤖
+================================
+Hey there, young programmer! 👋
+You found the browser console - that's awesome!
+This is where developers see what's happening behind the scenes.
+
+Try these fun commands:
+- console.log("Hello, World!")
+- Math.random()
+- new Date()
+
+Keep exploring and stay curious! 🌟
+`);
+
+// Add easter egg for console explorers
+window.secretCode = function() {
+    console.log(`
+    🎉 SECRET CODE ACTIVATED! 🎉
+    ========================
+    You're a natural explorer!
+    Here's a bonus Python tip:
+    
+    # You can use emojis in Python comments!
+    print("🐍 Python is awesome! 🚀")
+    
+    Keep being curious! 🌟
+    `);
+    
+    // Unlock special achievement
+    if (!userProgress.achievements['console-explorer']) {
+        userProgress.achievements['console-explorer'] = true;
+        showAchievementNotification('console-explorer');
+        saveProgress();
+    }
+};
+
+console.log("💡 Psst... try typing 'secretCode()' and press Enter for a surprise! 🎁");

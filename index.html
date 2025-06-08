@@ -3,154 +3,732 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BotCoding.io - Python Learning for Kids</title>
+    <title>CodeBot Academy - Learn Python for Kids! 🐍</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header class="header">
-        <nav class="nav container">
-            <div class="nav__brand">
-                <h1>🐍 BotCoding.io</h1>
-                <span class="nav__tagline">Python Learning for Kids</span>
-            </div>
-            <div class="nav__links">
-                <button class="nav__link active" data-tab="home">Home</button>
-                <button class="nav__link" data-tab="learn">Learn</button>
-                <button class="nav__link" data-tab="projects">Projects</button>
-                <button class="nav__link" data-tab="progress">Progress</button>
-            </div>
-        </nav>
+        <div class="container">
+            <nav class="nav">
+                <div class="nav__brand">
+                    <h1>🤖 CodeBot Academy</h1>
+                </div>
+                <ul class="nav__menu">
+                    <li><a href="#home" class="nav__link active">🏠 Home</a></li>
+                    <li><a href="#learn" class="nav__link">📚 Learn</a></li>
+                    <li><a href="#projects" class="nav__link">🛠️ Projects</a></li>
+                    <li><a href="#progress" class="nav__link">📊 Progress</a></li>
+                    <li><a href="#ai-chat" class="nav__link">💬 AI Chat</a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
 
-    <main class="main container">
-        <!-- Home Tab -->
-        <section id="home" class="tab-content active">
-            <div class="hero">
-                <h2>Welcome to Python Adventures! 🚀</h2>
-                <p>Learn Python programming through fun, interactive lessons and step-by-step projects designed just for kids!</p>
-                <div class="stats-grid">
-                    <div class="stat-card">
-                        <div class="stat-number" id="completed-lessons">0</div>
-                        <div class="stat-label">Lessons Completed</div>
+    <main>
+        <!-- Home Section -->
+        <section id="home" class="hero">
+            <div class="container">
+                <div class="hero__content">
+                    <h2>🌟 Welcome to Your Python Adventure!</h2>
+                    <p>Learn Python programming through fun, interactive lessons designed just for kids!</p>
+                    <div class="hero__stats">
+                        <div class="stat">
+                            <span class="stat__number">5</span>
+                            <span class="stat__label">Learning Modules</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat__number">20+</span>
+                            <span class="stat__label">Interactive Examples</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat__number">5</span>
+                            <span class="stat__label">Fun Projects</span>
+                        </div>
                     </div>
-                    <div class="stat-card">
-                        <div class="stat-number" id="completed-projects">0</div>
-                        <div class="stat-label">Projects Finished</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-number" id="total-progress">0%</div>
-                        <div class="stat-label">Overall Progress</div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="challenge-section">
-                <h3>🎯 Challenge Yourself!</h3>
-                <div class="challenge-card">
-                    <h4>Daily Coding Challenge</h4>
-                    <p>Try to solve today's puzzle: Create a program that prints your name in a fun pattern using loops!</p>
-                    <button class="btn btn--primary" onclick="showChallenge()">Start Challenge</button>
-                </div>
-            </div>
-
-            <div class="achievements-section">
-                <h3>🏆 Your Achievements</h3>
-                <div class="achievements-grid" id="achievements-grid">
-                    <!-- Achievements will be populated by JavaScript -->
+                    <button class="btn btn--primary btn--lg" onclick="scrollToSection('learn')">
+                        🚀 Start Learning Now!
+                    </button>
                 </div>
             </div>
         </section>
 
-        <!-- Learn Tab -->
-        <section id="learn" class="tab-content">
-            <h2>📚 Learning Modules</h2>
-            <div class="modules-grid" id="modules-grid">
-                <!-- Modules will be populated by JavaScript -->
-            </div>
-        </section>
+        <!-- Learn Section -->
+        <section id="learn" class="learn">
+            <div class="container">
+                <h2>📚 Learning Modules</h2>
+                <p>Master Python step by step with our interactive lessons!</p>
+                
+                <div class="modules">
+                    <!-- Python Basics Module -->
+                    <div class="module" id="python-basics">
+                        <div class="module__header">
+                            <h3>🐍 Python Basics</h3>
+                            <div class="progress-bar">
+                                <div class="progress-bar__fill" style="width: 80%"></div>
+                            </div>
+                            <span class="progress-text">80% Complete</span>
+                        </div>
+                        <div class="module__content">
+                            <div class="topic" id="variables">
+                                <h4>📦 Variables and Assignment</h4>
+                                <p>Variables are like boxes where we store information. Let's learn how to create them!</p>
+                                <div class="code-example">
+                                    <button class="btn btn--secondary try-code-btn" onclick="toggleCode('variables-code')">
+                                        👀 Try This Code
+                                    </button>
+                                    <pre class="code-block hidden" id="variables-code"><code>name = 'Alice'
+age = 12
+print(f'Hi, I am {name} and I am {age} years old!')</code></pre>
+                                    <div class="output">
+                                        <strong>Output:</strong> Hi, I am Alice and I am 12 years old!
+                                    </div>
+                                </div>
+                            </div>
 
-        <!-- Projects Tab -->
-        <section id="projects" class="tab-content">
-            <h2>🛠️ Step-by-Step Projects</h2>
-            <div class="projects-grid" id="projects-grid">
-                <!-- Projects will be populated by JavaScript -->
-            </div>
-        </section>
+                            <div class="topic" id="print-statements">
+                                <h4>🖨️ Print Statements</h4>
+                                <p>Print statements help us show messages on the screen. It's like talking to the computer!</p>
+                                <div class="code-example">
+                                    <button class="btn btn--secondary try-code-btn" onclick="toggleCode('print-code')">
+                                        👀 Try This Code
+                                    </button>
+                                    <pre class="code-block hidden" id="print-code"><code>print('Hello, World!')
+print('🐍 Python is fun!')
+print('*' * 10)</code></pre>
+                                    <div class="output">
+                                        <strong>Output:</strong><br>
+                                        Hello, World!<br>
+                                        🐍 Python is fun!<br>
+                                        **********
+                                    </div>
+                                </div>
+                            </div>
 
-        <!-- Progress Tab -->
-        <section id="progress" class="tab-content">
-            <h2>📊 Your Learning Progress</h2>
-            <div class="progress-overview">
-                <div class="progress-chart">
-                    <h3>Module Progress</h3>
-                    <div id="module-progress-list">
-                        <!-- Module progress will be populated by JavaScript -->
+                            <div class="topic" id="comments">
+                                <h4>💭 Comments and Documentation</h4>
+                                <p>Comments are notes we write for ourselves. The computer ignores them!</p>
+                                <div class="code-example">
+                                    <button class="btn btn--secondary try-code-btn" onclick="toggleCode('comments-code')">
+                                        👀 Try This Code
+                                    </button>
+                                    <pre class="code-block hidden" id="comments-code"><code># This is a comment
+print('Hello!')  # This prints a greeting</code></pre>
+                                    <div class="output">
+                                        <strong>Output:</strong> Hello!
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="topic" id="data-types">
+                                <h4>🏷️ Data Types</h4>
+                                <p>Python can work with different types of information: text, numbers, and true/false values!</p>
+                                <div class="code-example">
+                                    <button class="btn btn--secondary try-code-btn" onclick="toggleCode('types-code')">
+                                        👀 Try This Code
+                                    </button>
+                                    <pre class="code-block hidden" id="types-code"><code>text = 'Hello'  # String
+number = 42      # Integer
+price = 9.99     # Float
+is_fun = True    # Boolean</code></pre>
+                                </div>
+                                <div class="visual-example">
+                                    <img src="https://pplx-res.cloudinary.com/image/upload/v1749422025/pplx_project_search_images/e67004b6ba80371cc6dbbb9e76a578f5771ce330.jpg" alt="Python String Examples" class="example-image">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Making Decisions Module -->
+                    <div class="module" id="decisions">
+                        <div class="module__header">
+                            <h3>🤔 Making Decisions</h3>
+                            <div class="progress-bar">
+                                <div class="progress-bar__fill" style="width: 60%"></div>
+                            </div>
+                            <span class="progress-text">60% Complete</span>
+                        </div>
+                        <div class="module__content">
+                            <div class="topic" id="boolean-logic">
+                                <h4>✅ Boolean Logic</h4>
+                                <p>Boolean logic helps computers make yes/no decisions, just like we do!</p>
+                                <div class="code-example">
+                                    <button class="btn btn--secondary try-code-btn" onclick="toggleCode('boolean-code')">
+                                        👀 Try This Code
+                                    </button>
+                                    <pre class="code-block hidden" id="boolean-code"><code>is_sunny = True
+is_weekend = False
+print(is_sunny and is_weekend)</code></pre>
+                                    <div class="output">
+                                        <strong>Output:</strong> False
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="topic" id="comparison-operators">
+                                <h4>⚖️ Comparison Operators</h4>
+                                <p>We can compare things using special symbols like >, <, and ==</p>
+                                <div class="code-example">
+                                    <button class="btn btn--secondary try-code-btn" onclick="toggleCode('comparison-code')">
+                                        👀 Try This Code
+                                    </button>
+                                    <pre class="code-block hidden" id="comparison-code"><code>age = 13
+if age >= 13:
+    print('You are a teenager!')
+else:
+    print('You are a kid!')</code></pre>
+                                    <div class="output">
+                                        <strong>Output:</strong> You are a teenager!
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="topic" id="if-statements">
+                                <h4>🌦️ If Statements</h4>
+                                <p>If statements help our program make different choices based on conditions!</p>
+                                <div class="visual-example">
+                                    <img src="https://pplx-res.cloudinary.com/image/upload/v1749422025/pplx_project_search_images/b005029b71a3f1cf8d21fd2b58bd0578946bb943.jpg" alt="Decision Making Flowchart" class="example-image">
+                                </div>
+                                <div class="code-example">
+                                    <button class="btn btn--secondary try-code-btn" onclick="toggleCode('if-code')">
+                                        👀 Try This Code
+                                    </button>
+                                    <pre class="code-block hidden" id="if-code"><code>weather = 'sunny'
+if weather == 'rainy':
+    print('☔ Take an umbrella!')
+elif weather == 'sunny':
+    print('😎 Wear sunglasses!')
+else:
+    print('🧥 Take a jacket!')</code></pre>
+                                    <div class="output">
+                                        <strong>Output:</strong> 😎 Wear sunglasses!
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="topic" id="logical-operators">
+                                <h4>🧠 Logical Operators</h4>
+                                <p>We can combine conditions using 'and', 'or', and 'not' - just like in real life!</p>
+                                <div class="code-example">
+                                    <button class="btn btn--secondary try-code-btn" onclick="toggleCode('logical-code')">
+                                        👀 Try This Code
+                                    </button>
+                                    <pre class="code-block hidden" id="logical-code"><code>homework_done = True
+room_clean = False
+if homework_done and room_clean:
+    print('You can play games!')
+else:
+    print('Finish your tasks first!')</code></pre>
+                                    <div class="output">
+                                        <strong>Output:</strong> Finish your tasks first!
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Loops Module -->
+                    <div class="module" id="loops">
+                        <div class="module__header">
+                            <h3>🔄 Repeating Actions</h3>
+                            <div class="progress-bar">
+                                <div class="progress-bar__fill" style="width: 40%"></div>
+                            </div>
+                            <span class="progress-text">40% Complete</span>
+                        </div>
+                        <div class="module__content">
+                            <div class="topic" id="for-loops">
+                                <h4>🎯 For Loops</h4>
+                                <p>For loops help us repeat actions a specific number of times!</p>
+                                <div class="code-example">
+                                    <button class="btn btn--secondary try-code-btn" onclick="toggleCode('for-code')">
+                                        👀 Try This Code
+                                    </button>
+                                    <pre class="code-block hidden" id="for-code"><code>for i in range(5):
+    print('⭐' * (i + 1))</code></pre>
+                                    <div class="output">
+                                        <strong>Output:</strong><br>
+                                        ⭐<br>
+                                        ⭐⭐<br>
+                                        ⭐⭐⭐<br>
+                                        ⭐⭐⭐⭐<br>
+                                        ⭐⭐⭐⭐⭐
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="topic" id="while-loops">
+                                <h4>⏰ While Loops</h4>
+                                <p>While loops keep repeating as long as a condition is true!</p>
+                                <div class="code-example">
+                                    <button class="btn btn--secondary try-code-btn" onclick="toggleCode('while-code')">
+                                        👀 Try This Code
+                                    </button>
+                                    <pre class="code-block hidden" id="while-code"><code>count = 0
+while count < 3:
+    print(f'Count: {count}')
+    count += 1</code></pre>
+                                    <div class="output">
+                                        <strong>Output:</strong><br>
+                                        Count: 0<br>
+                                        Count: 1<br>
+                                        Count: 2
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="topic" id="break-continue">
+                                <h4>🛑 Break & Continue</h4>
+                                <p>Sometimes we want to stop a loop early or skip to the next round!</p>
+                                <div class="code-example">
+                                    <button class="btn btn--secondary try-code-btn" onclick="toggleCode('break-code')">
+                                        👀 Try This Code
+                                    </button>
+                                    <pre class="code-block hidden" id="break-code"><code>for num in range(10):
+    if num == 5:
+        break
+    print(num)</code></pre>
+                                    <div class="output">
+                                        <strong>Output:</strong> 0 1 2 3 4
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="topic" id="nested-loops">
+                                <h4>🔁 Nested Loops</h4>
+                                <p>We can put loops inside other loops to create patterns!</p>
+                                <div class="code-example">
+                                    <button class="btn btn--secondary try-code-btn" onclick="toggleCode('nested-code')">
+                                        👀 Try This Code
+                                    </button>
+                                    <pre class="code-block hidden" id="nested-code"><code>for row in range(3):
+    for col in range(3):
+        print('🟦', end=' ')
+    print()</code></pre>
+                                    <div class="output">
+                                        <strong>Output:</strong><br>
+                                        🟦 🟦 🟦<br>
+                                        🟦 🟦 🟦<br>
+                                        🟦 🟦 🟦
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Data Storage Module -->
+                    <div class="module" id="data-storage">
+                        <div class="module__header">
+                            <h3>📦 Storing Data</h3>
+                            <div class="progress-bar">
+                                <div class="progress-bar__fill" style="width: 20%"></div>
+                            </div>
+                            <span class="progress-text">20% Complete</span>
+                        </div>
+                        <div class="module__content">
+                            <div class="topic" id="lists">
+                                <h4>📝 Lists</h4>
+                                <p>Lists help us store multiple items together, like a shopping list!</p>
+                                <div class="code-example">
+                                    <button class="btn btn--secondary try-code-btn" onclick="toggleCode('lists-code')">
+                                        👀 Try This Code
+                                    </button>
+                                    <pre class="code-block hidden" id="lists-code"><code>fruits = ['apple', 'banana', 'orange']
+print(f'I have {len(fruits)} fruits')
+fruits.append('grape')
+print(fruits)</code></pre>
+                                    <div class="output">
+                                        <strong>Output:</strong><br>
+                                        I have 3 fruits<br>
+                                        ['apple', 'banana', 'orange', 'grape']
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="topic" id="dictionaries">
+                                <h4>📚 Dictionaries</h4>
+                                <p>Dictionaries store information with labels, like a real dictionary!</p>
+                                <div class="code-example">
+                                    <button class="btn btn--secondary try-code-btn" onclick="toggleCode('dict-code')">
+                                        👀 Try This Code
+                                    </button>
+                                    <pre class="code-block hidden" id="dict-code"><code>student = {
+    'name': 'Alex',
+    'age': 12,
+    'grade': 'A'
+}
+print(f"Student: {student['name']}")</code></pre>
+                                    <div class="output">
+                                        <strong>Output:</strong> Student: Alex
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="topic" id="string-methods">
+                                <h4>🔤 String Methods</h4>
+                                <p>Strings have special powers! We can make them uppercase, lowercase, and more!</p>
+                                <div class="visual-example">
+                                    <img src="https://pplx-res.cloudinary.com/image/upload/v1749422025/pplx_project_search_images/0cbe6e6fb02a13d879f5e89e2739bdb633cd6635.jpg" alt="Python String Methods" class="example-image">
+                                </div>
+                                <div class="code-example">
+                                    <button class="btn btn--secondary try-code-btn" onclick="toggleCode('string-code')">
+                                        👀 Try This Code
+                                    </button>
+                                    <pre class="code-block hidden" id="string-code"><code>message = 'hello world'
+print(message.upper())    # HELLO WORLD
+print(message.title())    # Hello World
+print(message.count('l'))  # 3</code></pre>
+                                    <div class="output">
+                                        <strong>Output:</strong><br>
+                                        HELLO WORLD<br>
+                                        Hello World<br>
+                                        3
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="topic" id="tuples">
+                                <h4>📍 Tuples</h4>
+                                <p>Tuples are like lists but they can't be changed once created!</p>
+                                <div class="code-example">
+                                    <button class="btn btn--secondary try-code-btn" onclick="toggleCode('tuple-code')">
+                                        👀 Try This Code
+                                    </button>
+                                    <pre class="code-block hidden" id="tuple-code"><code>coordinates = (10, 20)
+x, y = coordinates
+print(f'X: {x}, Y: {y}')</code></pre>
+                                    <div class="output">
+                                        <strong>Output:</strong> X: 10, Y: 20
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Functions Module -->
+                    <div class="module" id="functions">
+                        <div class="module__header">
+                            <h3>⚙️ Creating Functions</h3>
+                            <div class="progress-bar">
+                                <div class="progress-bar__fill" style="width: 0%"></div>
+                            </div>
+                            <span class="progress-text">0% Complete</span>
+                        </div>
+                        <div class="module__content">
+                            <div class="topic" id="function-definition">
+                                <h4>🛠️ Function Definition</h4>
+                                <p>Functions are like recipes - they take ingredients and make something new!</p>
+                                <div class="code-example">
+                                    <button class="btn btn--secondary try-code-btn" onclick="toggleCode('function-def-code')">
+                                        👀 Try This Code
+                                    </button>
+                                    <pre class="code-block hidden" id="function-def-code"><code>def greet(name):
+    return f'Hello, {name}!'
+
+message = greet('Alice')
+print(message)</code></pre>
+                                    <div class="output">
+                                        <strong>Output:</strong> Hello, Alice!
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="topic" id="parameters">
+                                <h4>📥 Parameters</h4>
+                                <p>Parameters are the ingredients we give to our function recipes!</p>
+                                <div class="code-example">
+                                    <button class="btn btn--secondary try-code-btn" onclick="toggleCode('params-code')">
+                                        👀 Try This Code
+                                    </button>
+                                    <pre class="code-block hidden" id="params-code"><code>def add_numbers(a, b):
+    result = a + b
+    return result
+
+sum_result = add_numbers(5, 3)
+print(f'5 + 3 = {sum_result}')</code></pre>
+                                    <div class="output">
+                                        <strong>Output:</strong> 5 + 3 = 8
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="topic" id="return-values">
+                                <h4>📤 Return Values</h4>
+                                <p>Functions can give us back a result, like a vending machine!</p>
+                                <div class="code-example">
+                                    <button class="btn btn--secondary try-code-btn" onclick="toggleCode('return-code')">
+                                        👀 Try This Code
+                                    </button>
+                                    <pre class="code-block hidden" id="return-code"><code>def calculate_area(length, width):
+    area = length * width
+    return area
+
+room_area = calculate_area(10, 12)
+print(f'Room area: {room_area} sq ft')</code></pre>
+                                    <div class="output">
+                                        <strong>Output:</strong> Room area: 120 sq ft
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="topic" id="scope">
+                                <h4>🌍 Scope</h4>
+                                <p>Variables have homes - some live everywhere, others live only inside functions!</p>
+                                <div class="code-example">
+                                    <button class="btn btn--secondary try-code-btn" onclick="toggleCode('scope-code')">
+                                        👀 Try This Code
+                                    </button>
+                                    <pre class="code-block hidden" id="scope-code"><code>global_var = 'I am global'
+
+def my_function():
+    local_var = 'I am local'
+    print(global_var)
+    print(local_var)
+
+my_function()</code></pre>
+                                    <div class="output">
+                                        <strong>Output:</strong><br>
+                                        I am global<br>
+                                        I am local
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="project-progress">
-                    <h3>Project Progress</h3>
-                    <div id="project-progress-list">
-                        <!-- Project progress will be populated by JavaScript -->
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="projects">
+            <div class="container">
+                <h2>🛠️ Fun Projects</h2>
+                <p>Build awesome projects step by step!</p>
+                
+                <div class="project-grid">
+                    <div class="project-card" id="hello-world-art">
+                        <div class="project-card__header">
+                            <h3>🎨 Hello World Art</h3>
+                            <div class="project-badges">
+                                <span class="badge badge--success">Beginner</span>
+                                <span class="badge badge--info">30 min</span>
+                            </div>
+                        </div>
+                        <div class="project-card__content">
+                            <p>Create colorful text art with Python!</p>
+                            
+                            <div class="project-steps">
+                                <div class="step">
+                                    <h4>Step 1: Basic Print</h4>
+                                    <p>Start with a simple greeting</p>
+                                    <button class="btn btn--secondary btn--sm" onclick="toggleCode('step1-code')">
+                                        👀 Show Code
+                                    </button>
+                                    <pre class="code-block hidden" id="step1-code"><code>print('Hello, World!')</code></pre>
+                                </div>
+                                
+                                <div class="step">
+                                    <h4>Step 2: Add Colors</h4>
+                                    <p>Add emojis to make it colorful</p>
+                                    <button class="btn btn--secondary btn--sm" onclick="toggleCode('step2-code')">
+                                        👀 Show Code
+                                    </button>
+                                    <pre class="code-block hidden" id="step2-code"><code>print('🌈 Hello, Colorful World! 🌈')</code></pre>
+                                </div>
+                                
+                                <div class="step">
+                                    <h4>Step 3: Create Patterns</h4>
+                                    <p>Create a border with asterisks</p>
+                                    <button class="btn btn--secondary btn--sm" onclick="toggleCode('step3-code')">
+                                        👀 Show Code
+                                    </button>
+                                    <pre class="code-block hidden" id="step3-code"><code>print('*' * 20)
+print('* Hello, World! *')
+print('*' * 20)</code></pre>
+                                </div>
+                            </div>
+                            
+                            <button class="btn btn--primary" onclick="completeProject('hello-world-art')">
+                                ✅ Mark Complete
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="project-card" id="magic-8-ball">
+                        <div class="project-card__header">
+                            <h3>🎱 Magic 8 Ball</h3>
+                            <div class="project-badges">
+                                <span class="badge badge--success">Beginner</span>
+                                <span class="badge badge--info">45 min</span>
+                            </div>
+                        </div>
+                        <div class="project-card__content">
+                            <p>Build a fortune-telling Magic 8 Ball!</p>
+                            
+                            <div class="project-steps">
+                                <div class="step">
+                                    <h4>Step 1: Import Random</h4>
+                                    <p>Import the random module for random choices</p>
+                                    <button class="btn btn--secondary btn--sm" onclick="toggleCode('magic-step1-code')">
+                                        👀 Show Code
+                                    </button>
+                                    <pre class="code-block hidden" id="magic-step1-code"><code>import random</code></pre>
+                                </div>
+                                
+                                <div class="step">
+                                    <h4>Step 2: Create Responses</h4>
+                                    <p>Create a list of possible answers</p>
+                                    <button class="btn btn--secondary btn--sm" onclick="toggleCode('magic-step2-code')">
+                                        👀 Show Code
+                                    </button>
+                                    <pre class="code-block hidden" id="magic-step2-code"><code>responses = ['Yes', 'No', 'Maybe', 'Ask again later']</code></pre>
+                                </div>
+                                
+                                <div class="step">
+                                    <h4>Step 3: Get Input & Respond</h4>
+                                    <p>Get user question and give random answer</p>
+                                    <button class="btn btn--secondary btn--sm" onclick="toggleCode('magic-step3-code')">
+                                        👀 Show Code
+                                    </button>
+                                    <pre class="code-block hidden" id="magic-step3-code"><code>question = input('Ask a yes/no question: ')
+answer = random.choice(responses)
+print(f'🎱 Magic 8-Ball says: {answer}')</code></pre>
+                                </div>
+                            </div>
+                            
+                            <button class="btn btn--primary" onclick="completeProject('magic-8-ball')">
+                                ✅ Mark Complete
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Progress Section -->
+        <section id="progress" class="progress-section">
+            <div class="container">
+                <h2>📊 Your Progress</h2>
+                <p>Look how much you've learned!</p>
+                
+                <div class="achievements">
+                    <h3>🏆 Achievements</h3>
+                    <div class="achievement-grid">
+                        <div class="achievement" id="achievement-first-print">
+                            <div class="achievement__icon">🏆</div>
+                            <div class="achievement__content">
+                                <h4>First Print</h4>
+                                <p>Completed your first print statement</p>
+                            </div>
+                        </div>
+                        
+                        <div class="achievement locked" id="achievement-loop-master">
+                            <div class="achievement__icon">🔄</div>
+                            <div class="achievement__content">
+                                <h4>Loop Master</h4>
+                                <p>Mastered for and while loops</p>
+                            </div>
+                        </div>
+                        
+                        <div class="achievement locked" id="achievement-function-creator">
+                            <div class="achievement__icon">⚙️</div>
+                            <div class="achievement__content">
+                                <h4>Function Creator</h4>
+                                <p>Created your first function</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="overall-progress">
+                    <h3>📈 Overall Progress</h3>
+                    <div class="progress-summary">
+                        <div class="progress-item">
+                            <span class="progress-label">Python Basics</span>
+                            <div class="progress-bar">
+                                <div class="progress-bar__fill" style="width: 80%"></div>
+                            </div>
+                            <span class="progress-percent">80%</span>
+                        </div>
+                        
+                        <div class="progress-item">
+                            <span class="progress-label">Making Decisions</span>
+                            <div class="progress-bar">
+                                <div class="progress-bar__fill" style="width: 60%"></div>
+                            </div>
+                            <span class="progress-percent">60%</span>
+                        </div>
+                        
+                        <div class="progress-item">
+                            <span class="progress-label">Repeating Actions</span>
+                            <div class="progress-bar">
+                                <div class="progress-bar__fill" style="width: 40%"></div>
+                            </div>
+                            <span class="progress-percent">40%</span>
+                        </div>
+                        
+                        <div class="progress-item">
+                            <span class="progress-label">Storing Data</span>
+                            <div class="progress-bar">
+                                <div class="progress-bar__fill" style="width: 20%"></div>
+                            </div>
+                            <span class="progress-percent">20%</span>
+                        </div>
+                        
+                        <div class="progress-item">
+                            <span class="progress-label">Creating Functions</span>
+                            <div class="progress-bar">
+                                <div class="progress-bar__fill" style="width: 0%"></div>
+                            </div>
+                            <span class="progress-percent">0%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- AI Chat Section -->
+        <section id="ai-chat" class="ai-chat">
+            <div class="container">
+                <h2>💬 AI Programming Assistant</h2>
+                <p>Ask me anything about Python programming!</p>
+                
+                <div class="chat-container">
+                    <div class="chat-messages" id="chat-messages">
+                        <div class="message bot-message">
+                            <div class="message-avatar">🤖</div>
+                            <div class="message-content">
+                                <p>Hi there! I'm your AI programming assistant. Ask me anything about Python - I'm here to help you learn! 🐍</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="chat-input">
+                        <input type="text" id="chat-input" class="form-control" placeholder="Ask me about Python...">
+                        <button class="btn btn--primary" onclick="sendMessage()">Send</button>
+                    </div>
+                    
+                    <div class="quick-questions">
+                        <h4>Quick Questions:</h4>
+                        <button class="btn btn--outline btn--sm" onclick="askQuickQuestion('What is a variable?')">
+                            What is a variable?
+                        </button>
+                        <button class="btn btn--outline btn--sm" onclick="askQuickQuestion('How do I create a list?')">
+                            How do I create a list?
+                        </button>
+                        <button class="btn btn--outline btn--sm" onclick="askQuickQuestion('What is a function?')">
+                            What is a function?
+                        </button>
                     </div>
                 </div>
             </div>
         </section>
     </main>
 
-    <!-- Project Modal -->
-    <div id="project-modal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3 id="modal-project-title"></h3>
-                <button class="close-modal" onclick="closeProjectModal()">&times;</button>
-            </div>
-            <div class="modal-body">
-                <div class="project-info">
-                    <span class="project-difficulty" id="modal-difficulty"></span>
-                    <span class="project-time" id="modal-time"></span>
-                </div>
-                <div class="step-progress">
-                    <div class="step-indicator" id="step-indicator"></div>
-                </div>
-                <div class="step-content" id="step-content">
-                    <!-- Step content will be populated by JavaScript -->
-                </div>
-                <div class="step-navigation">
-                    <button class="btn btn--secondary" id="prev-step" onclick="previousStep()" disabled>Previous</button>
-                    <button class="btn btn--primary" id="next-step" onclick="nextStep()">Next Step</button>
-                </div>
-            </div>
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 CodeBot Academy. Made with ❤️ for young programmers everywhere!</p>
         </div>
-    </div>
-
-    <!-- Code Challenge Modal -->
-    <div id="challenge-modal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3>🎯 Daily Challenge</h3>
-                <button class="close-modal" onclick="closeChallengeModal()">&times;</button>
-            </div>
-            <div class="modal-body">
-                <div class="challenge-content">
-                    <h4>Name Pattern Challenge</h4>
-                    <p>Create a program that prints your name in a fun pattern! Here's a hint to get you started:</p>
-                    <div class="code-editor">
-                        <div class="code-header">
-                            <span>Python Code</span>
-                            <button class="btn btn--sm" onclick="runChallengeCode()">▶ Run Code</button>
-                        </div>
-                        <textarea id="challenge-code" class="code-input" placeholder="# Type your code here
-name = 'Python'
-# Try using loops to create a pattern!"></textarea>
-                    </div>
-                    <div class="code-output">
-                        <div class="output-header">Output</div>
-                        <pre id="challenge-output" class="output-content">Click 'Run Code' to see your output!</pre>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    </footer>
 
     <script src="app.js"></script>
 </body>
