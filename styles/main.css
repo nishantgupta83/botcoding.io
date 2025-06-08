@@ -1,0 +1,28 @@
+:root {
+  --text-primary: #2E5266;
+  --bg-primary: #F8F9FA;
+  --accent: #FF6B6B;
+  --code-bg: #F1F3F5;
+}
+
+body {
+  font: 18px/1.6 'Comic Neue', sans-serif;
+  color: var(--text-primary);
+  background: var(--bg-primary);
+}
+
+.challenge-section {
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  margin: 2rem 0;
+}
+
+.code-output {
+  font-family: 'Monaco', monospace;
+  background: var(--code-bg);
+  padding: 1rem;
+  border-left: 4px solid var(--accent);
+  margin: 1rem 0;
+}
