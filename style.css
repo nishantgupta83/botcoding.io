@@ -1414,6 +1414,24 @@ html {
   outline-offset: 2px;
 }
 
+/* styles.css */
+.quiz-status {
+  display: flex;
+  gap: 10px;
+  margin: 20px 0;
+}
+
+.quiz-badge {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: #e0e0e0;
+}
+
+.quiz-badge.completed {
+  background: #4CAF50;
+}
+
 /* High contrast mode support */
 @media (prefers-contrast: high) {
   .code-block {
