@@ -1,25 +1,26 @@
-const progressTracker = {
+const progressManager = {
   init() {
-    this.state = JSON.parse(localStorage.getItem('codingProgress') || '{}');
+    this.progress = JSON.parse(localStorage.getItem('codingProgress')) || {};
+  },
+  
+  completeLesson(lessonId) {
+    this.progress[lessonId] = true;
+    localStorage.setItem('codingProgress', JSON.stringify(this.progress));
+    this.updateProgressUI();
   },
 
-  saveProgress(module, step) {
-    this.state[module] = Math.max(step, this.state[module] || 0);
-    localStorage.setItem('codingProgress', JSON.stringify(this.state));
-    this.updateBadges();
-  },
-
-  updateBadges() {
-    document.querySelectorAll('[data-module]').forEach(badge => {
-      if(this.state[badge.dataset.module] >= badge.dataset.requiredStep) {
-        badge.classList.add('unlocked');
+  updateProgressUI() {
+    document.querySelectorAll('.lesson-card').forEach(card => {
+      const lessonId = card.dataset.lesson;
+      if(this.progress[lessonId]) {
+        card.classList.add('completed');
       }
     });
   }
-}
+};
 
 // Initialize on page load
 document.addEventListener('DOMContentLoaded', () => {
-  progressTracker.init();
-  progressTracker.updateBadges();
+  progressManager.init();
+  progressManager.updateProgressUI();
 });
