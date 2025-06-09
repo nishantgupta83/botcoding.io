@@ -19,10 +19,17 @@ botcoding/
 │   └── advanced/
 │       ├── budget-tracker.html
 │       └── ... (more projects)
+├── quizzes/
+│   ├── basics-quiz.json            # Projects overview
 ├── styles/
 │   └── main.css              # Styling
+│   └── learn.css             # Learning
 └── scripts/
     └── progress.js           # Progress tracking
+    └── ai-feedback.js        # AI feedback 
+    └── code-runner.js        # Code Runner
+    └── nav-loader.js         # NAV loader 
+    └── quiz-system.js        # Quiz System
 
 #V1.0
 # Publishing Your CodeBot Academy Website - Minimal Cost Options
