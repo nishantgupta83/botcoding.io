@@ -1,0 +1,41 @@
+:root {
+  --primary: #2E86C1;
+  --background: #F8F9FA;
+  --code-bg: #FFF9E6;
+}
+
+.learning-module {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  padding: 2rem;
+  margin: 2rem auto;
+  max-width: 800px;
+}
+
+.code-editor {
+  background: var(--code-bg);
+  border: 2px solid var(--primary);
+  border-radius: 8px;
+  padding: 1rem;
+  margin: 1.5rem 0;
+}
+
+.run-btn {
+  background: var(--primary);
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 1rem;
+}
+
+.output {
+  background: #333;
+  color: #00FF00;
+  padding: 1rem;
+  margin-top: 1rem;
+  border-radius: 4px;
+  font-family: monospace;
+}
