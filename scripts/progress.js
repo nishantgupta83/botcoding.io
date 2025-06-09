@@ -18,6 +18,19 @@ const progressManager = {
     });
   }
 };
+// scripts/progress-tracker.js
+window.lessonProgress = {
+  completed: JSON.parse(localStorage.getItem('completedLessons')) || {},
+  
+  update(lessonId, status) {
+    this.completed[lessonId] = status;
+    localStorage.setItem('completedLessons', JSON.stringify(this.completed));
+  },
+  
+  getBadges() {
+    return Object.keys(this.completed).filter(k => this.completed[k]);
+  }
+};
 
 // Initialize on page load
 document.addEventListener('DOMContentLoaded', () => {
