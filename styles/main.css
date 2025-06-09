@@ -1,8 +1,11 @@
 :root {
-  --text-primary: #2E5266;
-  --bg-primary: #F8F9FA;
-  --accent: #FF6B6B;
-  --code-bg: #F1F3F5;
+    --bg-primary: #f8f9fa;
+    --text-primary: #333333;
+    --text-secondary: #6c757d;
+    --accent-blue: #4a90e2;
+    --success-green: #28a745;
+    --card-bg: #ffffff;
+    --border-light: #e0e0e0;
 }
 
 body {
@@ -25,4 +28,22 @@ body {
   padding: 1rem;
   border-left: 4px solid var(--accent);
   margin: 1rem 0;
+}
+
+/* Mobile-first approach */
+@media (max-width: 768px) {
+    body {
+        font-size: 16px;
+        line-height: 1.6;
+    }
+    
+    .module-card {
+        margin-bottom: 1rem;
+        padding: 1rem;
+    }
+    
+    .progress-circle {
+        width: 60px;
+        height: 60px;
+    }
 }
