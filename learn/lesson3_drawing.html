@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Lesson 3 – Draw Shapes</title>
+  <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css" />
+  <script defer src="https://pyscript.net/latest/pyscript.js"></script>
+</head>
+<body>
+  <h2>Lesson 3: Draw Shapes</h2>
+  <p>Let’s draw a square with Python!</p>
+  <canvas id="canvas" width="200" height="200" style="border:1px solid #000;"></canvas>
+  
+  <py-script>
+from js import document
+ctx = document.getElementById("canvas").getContext("2d")
+side = 100
+ctx.beginPath()
+ctx.moveTo(50, 50)
+for _ in range(4):
+    ctx.lineTo(50 + side, 50)
+    ctx.translate(side, 0)
+    ctx.rotate(3.14159/2)
+ctx.stroke()
+  </py-script>
+  
+  <p><strong>Challenge:</strong> Change colors, size, or draw a triangle!</p>
+  <p><a href="index.html">← Back to lessons</a></p>
+</body>
+</html>
