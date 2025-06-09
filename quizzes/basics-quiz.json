@@ -1,0 +1,14 @@
+// quizzes/basics-quiz.json
+{
+  "variables": {
+    "instructions": "Create a variable called 'age' with value 12",
+    "template": "# Starter code\nprint()",
+    "tests": [
+      {"type": "stdout", "expected": "12"}
+    ],
+    "hints": [
+      "Use assignment operator =",
+      "Variable names can't have spaces"
+    ]
+  }
+}
